@@ -1,6 +1,5 @@
 let button = document.getElementById("getDetails");
-document.addEventListener("click", getUserDetails)
-
+// document.addEventListener("click", getUserDetails)
 
 const userStore = {
     "Ada": {
@@ -35,7 +34,7 @@ scope and can be used by all the code in that scope
 */
 
 let getUserDetails = () => {
-    let username = prompt("Enter your Username");
+    let username = toString(prompt("Enter your Username"));
 
     const validateUsername = (username) => {
         if (!username) return false;
@@ -85,10 +84,7 @@ let getUserDetails = () => {
         Email: ${userDetails.email} \n
         profession: ${userDetails.profession}`
     )
-
-
-
-
+    
     // function validateUsername(username) {
     //     if (!username) return false;
     //     if(username.length >= 10) return false;
@@ -101,3 +97,5 @@ let getUserDetails = () => {
     //     return true;
     // }
 }
+
+document.addEventListener("click", getUserDetails)
