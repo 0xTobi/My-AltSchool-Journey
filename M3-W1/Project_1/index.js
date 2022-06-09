@@ -30,7 +30,7 @@ const userStore = {
 function getUserDetails() {
     let username = prompt("Enter your Username");
     while(!validateUsername(username)) {
-        if (username === null) return
+        if (username === null) return       //Sanity Check. Not important.
         username = prompt("Enter your Username. Username must be less than 10 characters.")
     }
 
