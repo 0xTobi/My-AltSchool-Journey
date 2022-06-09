@@ -27,8 +27,28 @@ const userStore = {
 }
 
 
-function getUserDetails() {
+/* 
+Javascript arrow function have to be declared before they can be used, 
+unlike Function Declaration which are not part of the regular top to-bottom flow of control. 
+They are conceptually moved to the top of their
+scope and can be used by all the code in that scope
+*/
+
+let getUserDetails = () => {
     let username = prompt("Enter your Username");
+
+    const validateUsername = (username) => {
+        if (!username) return false;
+        if(username.length >= 10) return false;
+        return true;
+    }
+
+    const validatePassword = (password) => {
+        if (!password) return false;
+        if (password.length < 6 || password.length > 15) return false;
+        return true;
+    }
+
     while(!validateUsername(username)) {
         if (username === null) return       //Sanity Check. Not important.
         username = prompt("Enter your Username. Username must be less than 10 characters.")
@@ -67,15 +87,17 @@ function getUserDetails() {
     )
 
 
-    function validateUsername(username) {
-        if (!username) return false;
-        if(username.length >= 10) return false;
-        return true;
-    }
 
-    function validatePassword(password) {
-        if (!password) return false;
-        if (password.length < 6 || password.length > 15) return false;
-        return true;
-    }
+
+    // function validateUsername(username) {
+    //     if (!username) return false;
+    //     if(username.length >= 10) return false;
+    //     return true;
+    // }
+
+    // function validatePassword(password) {
+    //     if (!password) return false;
+    //     if (password.length < 6 || password.length > 15) return false;
+    //     return true;
+    // }
 }
