@@ -1,5 +1,5 @@
 let button = document.getElementById("getDetails");
-// document.addEventListener("click", getUserDetails)
+document.addEventListener("click", getUserDetails)
 
 const userStore = {
     "Ada": {
@@ -25,32 +25,24 @@ const userStore = {
     }
 }
 
+function validateUsername(username) {
+    if (!username) return false;
+    if(username.length >= 10) return false;
+    return true;
+}
 
-/* 
-Javascript arrow function have to be declared before they can be used, 
-unlike Function Declaration which are not part of the regular top to-bottom flow of control. 
-They are conceptually moved to the top of their
-scope and can be used by all the code in that scope
-*/
+function validatePassword(password) {
+    if (!password) return false;
+    if (password.length < 6 || password.length > 15) return false;
+    return true;
+}
 
-let getUserDetails = () => {
-    let username = toString(prompt("Enter your Username"));
 
-    const validateUsername = (username) => {
-        if (!username) return false;
-        if(username.length >= 10) return false;
-        return true;
-    }
-
-    const validatePassword = (password) => {
-        if (!password) return false;
-        if (password.length < 6 || password.length > 15) return false;
-        return true;
-    }
-
-    while(!validateUsername(username)) {
-        if (username === null) return       //Sanity Check. Not important.
-        username = prompt("Enter your Username. Username must be less than 10 characters.")
+function getUserDetails() {
+    let username = prompt("Enter your username")
+    while (!validateUsername(username)) {
+        if (username === null) return
+        username = prompt("Enter your username. Username must be less than 10")
     }
 
     let password = prompt("Enter your password");
@@ -76,7 +68,7 @@ let getUserDetails = () => {
         alert("Incorrect password, please retry")
         return
     }
-
+    
     alert(
         `Showing details for ${username}: \n
         First Name: ${userDetails.firstName} \n
@@ -84,18 +76,28 @@ let getUserDetails = () => {
         Email: ${userDetails.email} \n
         profession: ${userDetails.profession}`
     )
-    
-    // function validateUsername(username) {
-    //     if (!username) return false;
-    //     if(username.length >= 10) return false;
-    //     return true;
-    // }
 
-    // function validatePassword(password) {
-    //     if (!password) return false;
-    //     if (password.length < 6 || password.length > 15) return false;
-    //     return true;
-    // }
+    let output = `
+        <h2>Showing details for ${username}</h2>
+        </br>
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td>${userDetails.firstName}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>${userDetails.lastName}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>${userDetails.email}</td>
+            </tr>
+            <tr>
+                <td>Profession</td>
+                <td>${userDetails.profession}</td>
+            </tr>
+        </table>
+    `
+    document.body.innerHTML = output;
 }
-
-document.addEventListener("click", getUserDetails)
